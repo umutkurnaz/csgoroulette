@@ -1,0 +1,58 @@
+Kullanacağımız Diller:
+-HTML, CSS, JAVASCRIPT, PHP
+
+Sitenin Amacı:
+-CS GO Eşyaları ile bahis oynama sitesi.
+
+Örnek Siteler:
+-https://csgoempire.gg/ -> Rulette CT ve T var. Birde zar var. CT ve T 2 katı, zar 14 katı kazanç veriyor. Bahis için miktar girme yeri var. Son 100 tane sayı ile, Son 10 tane resim ile gösteriliyor.
+-https://duelbits.com/ -> csgoempire ile aynı.
+-https://gamdom.com/ -> csgoempire ile aynı. Bunun dışında otomatik oynatma modu var. Kim hangi renge ne kadar jeton koydu görebiliyorsunuz. Skin yada sayı gözükme.
+-https://www.rollbit.com/ -> Buradaki rulette bir çarpan belirleyip ona istediğimiz sayıda jeton koyabiliyoruz. Gelen çarpan belirlediğimiz çarpanın üstündeyse kazanıyoruz. 
+
+Yapıcaklarımız:
+1) Rulet oyunu yazıcaz. Bu oyunda kırmızı, siyah ve yeşil renklerine jeton atılabilecek. kırmızı ve siyah 2 katı öderken, yeşil 14 katı ödeyecek.
+2) Giriş yapma sistemi yazılıcak. Steam üzerinden giriş yapılıcak.
+3) Steam'den skin deposit etme kodu yazılıcak.
+4) Skin çekme kodu yazılıcak.
+
+Giriş:
+    Steam api kullanımı ile giriş yapılıcak. Yapılan girişteki bilgiler kaydedilecek. Skin yatırma ve çekme geçmişi görülebilicek. 0 Jeton ile başlanıcak.
+    Trade link kaydedilecek. Tavsiye eden sistem olucak.
+
+Rulet:
+
+DAĞILIM
+    Yeşil 14x, Siyah 2x, Kırmızı 2x
+    Yeşil   -> 0
+    Siyah   -> 1,4,6,8,10,11,13
+    Kırmızı -> 2,3,5,7,9,12,14
+
+    Neden?
+    Çünkü bir oyuncunun 1500 jeton ile başladığını varsayarsak, bu jetonlarının 700'ünü siyaha, 700'ünü kırmızıya, 100'ünü yeşil'e atarsa
+    siyah veya kırmızı gelirse 700x2'den 1400 jeton, yeşil gelirse 100x14'den 1400 jeton kazanmış olucak. Bu durumda oyuncunun kazanabileceği miktar 
+    bütün bahis türlerine orantılı oynasa bile asla hepsi için 1500 yani yatırdığı jeton miktarı olamaz. Bu sayede bahisi oynatan taraf yani bu durumda
+    bizim kazanma olasılığımız her zaman daha yüksek olur.
+
+    Niye?
+    100 oyuncunun hepsinin 100 jetonu olduğunu varsayalım. Toplamda 100x100'den sitemizde kullanıcıların toplam jeton sayısı 10.000 jeton eder.
+    100 kullanıcıdan:
+        45'i Siyaha 100 jeton,
+        45'i Kırmızıya 100 jeton,
+        4'ü Siyaha 90, Yeşile 10 jeton,
+        4'ü Kırmızıya 90, Yeşile 10 jeton,
+        2'si Yeşile 100 jeton oynarsa.
+
+        Siyah gelmesi durumunda 45 kişi 100x2'den 200 jeton, 4 kişi 90x2'den 180 jeton kazanacaktır.
+        Kırmızı gelmesi durumunda 45 kişi 100x2'den 200 jeton, 4 kişi 90x2'den 180 jeton kazanacaktır.
+        Yeşil gelmesi durumunda 2 kişi 100x14'den 1.400 jeton, 8 kişi 10x14'den 140 jeton kazanacaktır.
+
+        Bu durumda siyah gelirse toplamda 200x45'den 9.000 ve 180x4'den 720 jeton, yani toplamda 9.720 jeton dağıtılacaktır.
+        Bu durumda kırmızı gelirse toplamda 200x45'den 9000 ve 180x4'den 720 jeton, yani toplamda 9.720 jeton dağıtılacaktır.
+        Bu durumda yeşil gelirse 1.400x2'den 2.800 ve 140x8'den 1.120 jeton, yani toplamda 3.920 jeton dağıtılacaktır.
+
+        Gördüğünüz gibi 10.000 jeton ile başlanan el bahisi oynatan sitenin, yani bu durumda bizim, en kötü 280, en iyi 6.080 jeton karımız demektir.
+
+RASTGELE
+    Hangi sayının geleceğini hash ve salt sistemi ile random edicez. Böylece daha el başlamadan sonucu bilirken, oyunculara animasyon ile hangi
+    sayının yani hangi rengin geldiğini göstericez.

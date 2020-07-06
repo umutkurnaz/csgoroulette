@@ -1,0 +1,26 @@
+Üyelik Sistemi:
+    İşlemler:
+        -Üye girişi ve çıkışı yapabilecek.
+        -Jeton eklemek için skin ile yükleme yapabilecek.
+        -Jeton çekmek için skin ile çekme yapabilecek.
+        -Yönlendiren kişi kodu ile 1 jeton kazanıcak.
+        -Jeton ekleme ve çekme geçmişini görebilecek.
+        -Trade link'i kaydedilebilecek?
+    
+    Database(Veritabanı):
+        -User:
+            -Username
+            -Email
+            -Jeton
+            -ReferralCode
+            -Referrer
+        -Transaction:
+            -Type(Withdraw/Deposit)
+            -Skin
+            -JetonValue
+            -WithdrawUser
+            -DepositUser
+            -isCompleted
+
+    Yapılacalar:
+    -Steam api ile üye girişi yapma izni al.
